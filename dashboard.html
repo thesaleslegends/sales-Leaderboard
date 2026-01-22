@@ -5,18 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mijn Dashboard</title>
 
-  <link rel="stylesheet" href="/dashboard.css" />
+  <!-- ✅ relatieve path -->
+  <link rel="stylesheet" href="dashboard.css" />
 </head>
 <body>
 
   <main class="dashboard">
 
-    <!-- HEADER -->
     <section class="header">
       <h1>Hey <span id="medewerkerNaam">Medewerker</span> 👋</h1>
     </section>
 
-    <!-- VERDIENSTEN -->
     <section class="card">
       <h2>Jouw verdiensten</h2>
 
@@ -33,37 +32,20 @@
       </div>
     </section>
 
-    <!-- PLANNING -->
     <section class="card">
       <h2>Jij bent ingepland voor</h2>
-
-      <div id="planningLijst" class="planning">
-        <!-- 
-          JS injecteert hier items in deze vorm:
-
-          <div class="planning-item">
-            <div class="planning-date">
-              <span class="day">Zaterdag</span>
-              <span class="date">23/02</span>
-            </div>
-
-            <div class="planning-shift">
-              Hele shift
-            </div>
-          </div>
-        -->
-      </div>
+      <div id="planningLijst" class="planning"></div>
     </section>
 
-    <!-- LEADERBOARD KNOP -->
-<section class="card">
-  <button id="leaderboardBtn" class="leaderboard-btn">
-    Bekijk leaderboard →
-  </button>
-</section>
+    <section class="card">
+      <button id="leaderboardBtn" class="leaderboard-btn">
+        Bekijk leaderboard →
+      </button>
+    </section>
 
   </main>
 
-  <script type="module" src="/js/mederwerker-dashboard.js"></script>
+  <!-- ✅ juiste bestandsnaam + relatieve path -->
+  <script type="module" src="js/medewerker-dashboard.js"></script>
 </body>
 </html>
