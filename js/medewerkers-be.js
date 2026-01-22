@@ -25,7 +25,7 @@ async function laadMedewerkers() {
     `;
 
     row.onclick = () => {
-      window.location.href = `/medewerker.html?id=${m.id}`;
+     window.location.href = `medewerker.html?id=${m.id}`;
     };
 
     container.appendChild(row);
