@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Medewerker – Backend</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, select {
+      padding: 6px;
+      width: 200px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    table {
+      margin-top: 15px;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      padding: 6px 10px;
+      text-align: left;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2 id="naam"></h2>
+
+  <label>
+    Actief:
+    <input type="checkbox" id="actief">
+  </label>
+
+  <label>
+    Basis dagloon:
+    <input type="number" id="dagloon" step="0.01">
+  </label>
+
+  <label>
+    Bonus per netto afspraak:
+    <input type="number" id="bonus" step="0.01">
+  </label>
+
+  <button id="opslaan">Opslaan</button>
+
+  <hr>
+
+  <!-- ✅ HIER KOMT DE LOONPERIODE SELECTOR -->
+  <label>
+    Loonperiode:
+    <select id="loonPeriodeSelect">
+      <option value="huidig">Huidige loonperiode (26 → 25)</option>
+      <option value="vorig">Vorige loonperiode</option>
+    </select>
+  </label>
+
+  <h3>Gewerkt</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Datum</th>
+        <th>Basis loon</th>
+        <th>Afspraken</th>
+      </tr>
+    </thead>
+
+    <tbody id="gewerktBody"></tbody>
+
+    <tfoot>
+      <tr>
+        <th>Totaal</th>
+        <th id="totaalBasis">€0</th>
+        <th id="totaalAfspraken">0</th>
+      </tr>
+      <tr>
+        <th>Bonus</th>
+        <th colspan="2" id="totaalBonus">€0</th>
+      </tr>
+    </tfoot>
+  </table>
+
+  <!-- Scripts altijd onderaan -->
+  <script type="module" src="./js/medewerker-be.js"></script>
+  <script type="module" src="./js/medewerker-werk.js"></script>
+
+</body>
+</html>

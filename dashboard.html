@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mijn Dashboard</title>
+
+  <link rel="stylesheet" href="/dashboard.css" />
+</head>
+<body>
+
+  <main class="dashboard">
+
+    <!-- HEADER -->
+    <section class="header">
+      <h1>Hey <span id="medewerkerNaam">Medewerker</span> 👋</h1>
+    </section>
+
+    <!-- VERDIENSTEN -->
+    <section class="card">
+      <h2>Jouw verdiensten</h2>
+
+      <div class="earnings">
+        <div class="earning">
+          <span class="label">Deze week</span>
+          <span class="amount" id="weekVerdiensten">€0</span>
+        </div>
+
+        <div class="earning">
+          <span class="label">Deze maand</span>
+          <span class="amount" id="maandVerdiensten">€0</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLANNING -->
+    <section class="card">
+      <h2>Jij bent ingepland voor</h2>
+
+      <div id="planningLijst" class="planning">
+        <!-- 
+          JS injecteert hier items in deze vorm:
+
+          <div class="planning-item">
+            <div class="planning-date">
+              <span class="day">Zaterdag</span>
+              <span class="date">23/02</span>
+            </div>
+
+            <div class="planning-shift">
+              Hele shift
+            </div>
+          </div>
+        -->
+      </div>
+    </section>
+
+    <!-- LEADERBOARD KNOP -->
+<section class="card">
+  <button id="leaderboardBtn" class="leaderboard-btn">
+    Bekijk leaderboard →
+  </button>
+</section>
+
+  </main>
+
+  <script type="module" src="/js/mederwerker-dashboard.js"></script>
+</body>
+</html>

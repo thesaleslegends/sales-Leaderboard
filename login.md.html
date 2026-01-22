@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TSL – Login</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+
+  <main class="login-wrapper">
+
+    <!-- LOGO -->
+    <div class="logo-container">
+      <img src="./logo.png" alt="The Sales Legends" />
+    </div>
+
+    <!-- LOGIN CARD -->
+    <section class="login-card">
+
+      <div class="input-group">
+        <span class="icon">👤</span>
+        <input
+          id="email"
+          type="email"
+          placeholder="Email"
+          autocomplete="email"
+        />
+      </div>
+
+      <div class="input-group">
+        <span class="icon">🔒</span>
+        <input
+          id="password"
+          type="password"
+          placeholder="Wachtwoord"
+          autocomplete="current-password"
+        />
+      </div>
+
+      <button id="loginBtn" class="login-btn">
+        LOG IN
+      </button>
+
+      <p id="loginError" class="error"></p>
+
+      <a href="#" class="forgot">Wachtwoord vergeten?</a>
+
+    </section>
+
+  </main>
+
+  <!-- BELANGRIJK: module + juiste pad -->
+  <script type="module" src="./js/login.js"></script>
+</body>
+</html>

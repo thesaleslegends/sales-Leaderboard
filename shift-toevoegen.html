@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dag invoer (MINIMUM)</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 8px;
+      align-items: center;
+    }
+
+    input, select, button {
+      padding: 6px 8px;
+    }
+
+    button {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Dag invoer – MINIMUM</h2>
+
+  <label>
+    Datum:
+    <input type="date" id="dagDatum" />
+  </label>
+
+  <hr>
+
+  <!-- Hier komen de regels -->
+  <div id="regels"></div>
+
+  <button id="addRow" type="button">Regel toevoegen</button>
+  <button id="opslaanDag" type="button">Opslaan</button>
+
+
+  <!-- JOUW SCRIPT -->
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
