@@ -24,9 +24,9 @@ async function laadMedewerkers() {
       <span>${m.actief ? "Actief" : "Inactief"}</span>
     `;
 
-    row.onclick = () => {
-  window.location.href = `${window.location.pathname.replace(/\/[^/]*$/, '/') }medewerker.html?id=${m.id}`;
-    };
+  row.onclick = () => {
+  window.location.href = `medewerker.html?id=${m.id}`;
+};
 
     container.appendChild(row);
   });
