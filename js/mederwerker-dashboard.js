@@ -187,10 +187,17 @@ shifts.forEach(shift => {
   ========================= */
   planningEl.innerHTML = "";
 
-  const toekomstigeShifts = shifts.filter(
-    s => new Date(s.datum) >= new Date(vandaag.setHours(0, 0, 0, 0))
-  );
+  const vandaagStart = new Date();
+vandaagStart.setHours(0, 0, 0, 0);
 
+const toekomstigeShifts = shifts.filter(s =>
+  // ❌ niet ingepland → niet tonen
+  s.type &&
+  s.type !== "" &&
+
+  // ❌ alleen vandaag of toekomst
+  new Date(s.datum) >= vandaagStart
+);
   if (toekomstigeShifts.length === 0) {
     planningEl.innerHTML = "<p>Geen ingeplande diensten</p>";
     return;
