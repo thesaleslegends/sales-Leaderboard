@@ -193,7 +193,7 @@ const leaderboardBtn = document.getElementById("leaderboardBtn");
 
 if (leaderboardBtn) {
   leaderboardBtn.addEventListener("click", () => {
-    window.location.href = "./dashboard.html";
+  window.location.href = "/sales-Leaderboard/index.html";
   });
 }
   /* =========================
