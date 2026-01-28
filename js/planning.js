@@ -32,6 +32,7 @@ async function laadMedewerkers() {
   }
 
   renderMedewerkers(data);
+  await laadPlanningVoorDatum(datumInput.value);
 }
 
 /* =========================
