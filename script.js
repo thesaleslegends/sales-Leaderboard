@@ -267,7 +267,7 @@ async function renderLeaderboard() {
     <option value="emp_004">Ricardo</option>
     <option value="emp_005">San</option>
     <option value="emp_006">Joya</option>
-    <option value="emp_007">Joya</option>
+    <option value="emp_007">kees</option>
   </select>
 
   <label style="font-size:12px; margin: 0 6px;">
