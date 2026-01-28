@@ -1,5 +1,16 @@
 import { supabase } from "../supabase.js";
 
+const ALLOWED_EMAILS = [
+  "k.vandennieuwenhoff@outlook.com"
+];
+
+const { data: { user } } = await supabase.auth.getUser();
+
+if (!user || !ALLOWED_EMAILS.includes(user.email)) {
+  alert("Geen toegang");
+  window.location.href = "login.html";
+}
+
 /* =========================
    AUTH CHECK
 ========================= */

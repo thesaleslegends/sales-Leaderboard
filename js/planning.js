@@ -1,5 +1,7 @@
 import { supabase } from "../supabase.js";
 
+console.log("🔥 NIEUWE planning.js ACTIEF", new Date().toISOString());
+
 const container = document.getElementById("medewerkersContainer");
 const datumInput = document.getElementById("planningDatum");
 const opslaanBtn = document.getElementById("opslaanPlanning");
