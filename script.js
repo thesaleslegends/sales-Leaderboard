@@ -12,7 +12,12 @@ export const MEDEWERKERS = {
   emp_003: { naam: "Jade" },
   emp_004: { naam: "Ricardo" },
   emp_005: { naam: "San" },
-  emp_006: { naam: "Joya" }
+  emp_006: { naam: "Joya" },
+  emp_007: { naam: "Kees" },
+  emp_008: { naam: "md" },
+  emp_009: { naam: "Md" },
+  emp_010: { naam: "md" },
+  emp_011: { naam: "md" }
 };
 
 
