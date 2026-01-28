@@ -144,7 +144,7 @@ function bouwStatsPerNaam(alleDagenData) {
       if (!stats[id]) {
         stats[id] = {
           id,
-          naam: MEDEWERKERS[id]?.naam || "Onbekend",
+       naam: MEDEWERKERS[id]?.naam || regel.medewerker || "Onbekend",
           werkdagen: {}, // 👈 per datum
           bruto: 0,
           netto: 0
