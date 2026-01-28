@@ -198,6 +198,7 @@ const toekomstigeShifts = shifts.filter(s =>
   // ❌ alleen vandaag of toekomst
   new Date(s.datum) >= vandaagStart
 );
+
   if (toekomstigeShifts.length === 0) {
     planningEl.innerHTML = "<p>Geen ingeplande diensten</p>";
     return;
