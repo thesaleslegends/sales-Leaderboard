@@ -141,12 +141,18 @@ async function laadPlanningVoorDatum(datum) {
 
   // Daarna bestaande planning toepassen
   data.forEach(shift => {
-    const radio = document.querySelector(
-      `input[name="shift_${shift.medewerker_id}"][value="${shift.type}"]`
-    );
+  const row = document.querySelector(
+    `.row[data-medewerker-id="${shift.medewerker_id}"]`
+  );
 
-    if (radio) radio.checked = true;
-  });
+  if (!row) return; // medewerker niet actief / niet zichtbaar
+
+  const radio = row.querySelector(
+    `input[type="radio"][value="${shift.type}"]`
+  );
+
+  if (radio) radio.checked = true;
+});
 
   console.log("✅ Planning toegepast:", data);
 }
