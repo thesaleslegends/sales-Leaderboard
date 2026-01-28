@@ -100,30 +100,46 @@ async function initDashboard() {
      SHIFTS
   ========================= */
   const { data: shifts, error: shiftsError } = await supabase
-    .from("shifts")
-    .select("datum, type")
-    .eq("medewerker_id", medewerker.id)
-    .order("datum", { ascending: true });
+  .from("shifts")
+  .select("datum, type")
+  .eq("medewerker_id", medewerker.id)
+  .order("datum", { ascending: true });
 
-  if (shiftsError) {
-    console.error("❌ Fout bij shifts", shiftsError);
+if (shiftsError) {
+  console.error("❌ Fout bij shifts", shiftsError);
+  return;
+}
+
+// 👇 tijd-helpers
+const vandaagDatum = vandaag.toISOString().slice(0, 10);
+const huidigeTijdUren = vandaag.getHours() + vandaag.getMinutes() / 60;
+const START_UUR_WERKDAG = 10; // ⏰ pas aan indien nodig
+
+let weekBasis = 0;
+let loonBasis = 0;
+const gewerkteDatums = new Set();
+
+shifts.forEach(shift => {
+  const shiftDatum = shift.datum;
+
+  // ❌ toekomst → niet meetellen
+  if (shiftDatum > vandaagDatum) return;
+
+  // ❌ vandaag maar werkdag nog niet begonnen
+  if (shiftDatum === vandaagDatum && huidigeTijdUren < START_UUR_WERKDAG) {
     return;
   }
 
-  let weekBasis = 0;
-  let loonBasis = 0;
-  const gewerkteDatums = new Set();
+  // ✅ vanaf hier telt loon mee
+  gewerkteDatums.add(shiftDatum);
 
-  shifts.forEach(shift => {
-    gewerkteDatums.add(shift.datum);
+  let dagloon = 0;
+  if (shift.type === "full") dagloon = medewerker.basis_dagloon;
+  if (shift.type === "half") dagloon = medewerker.basis_dagloon / 2;
 
-    let dagloon = 0;
-    if (shift.type === "full") dagloon = medewerker.basis_dagloon;
-    if (shift.type === "half") dagloon = medewerker.basis_dagloon / 2;
-
-    if (inHuidigeWeek(shift.datum, vandaag)) weekBasis += dagloon;
-    if (inLoonperiode(shift.datum, vandaag)) loonBasis += dagloon;
-  });
+  if (inHuidigeWeek(shiftDatum, vandaag)) weekBasis += dagloon;
+  if (inLoonperiode(shiftDatum, vandaag)) loonBasis += dagloon;
+});
 
   /* =========================
      BONUS (dagen → regels)
