@@ -120,6 +120,9 @@ let loonBasis = 0;
 const gewerkteDatums = new Set();
 
 shifts.forEach(shift => {
+  // ❌ niet ingepland → negeren
+  if (!shift.type || shift.type === "") return;
+
   const shiftDatum = shift.datum;
 
   // ❌ toekomst → niet meetellen
