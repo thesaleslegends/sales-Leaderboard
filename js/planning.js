@@ -47,30 +47,30 @@ function renderMedewerkers(medewerkers) {
   medewerkers.forEach(medewerker => {
     const row = document.createElement("div");
     row.className = "row";
+    row.dataset.medewerkerId = medewerker.id; // 👈 BELANGRIJK
 
     row.innerHTML = `
       <strong>${medewerker.naam}</strong>
 
       <label>
-  <input type="radio" name="shift_${medewerker.id}" value="">
-  Niet ingepland
-</label>
+        <input type="radio" name="shift_${medewerker.id}" value="">
+        Niet ingepland
+      </label>
 
-<label>
-  <input type="radio" name="shift_${medewerker.id}" value="full">
-  Hele dag
-</label>
+      <label>
+        <input type="radio" name="shift_${medewerker.id}" value="full">
+        Hele dag
+      </label>
 
-<label>
-  <input type="radio" name="shift_${medewerker.id}" value="half">
-  Halve dag
-</label>
+      <label>
+        <input type="radio" name="shift_${medewerker.id}" value="half">
+        Halve dag
+      </label>
     `;
 
     container.appendChild(row);
   });
 }
-
 /* =========================
    OPSLAAN PLANNING
 ========================= */
@@ -84,13 +84,12 @@ opslaanBtn.addEventListener("click", async () => {
   const rows = document.querySelectorAll(".row");
 
   for (const row of rows) {
-    const medewerkerNaam = row.querySelector("strong").innerText;
     const radios = row.querySelectorAll("input[type='radio']");
     const gekozen = [...radios].find(r => r.checked);
 
     if (!gekozen) continue; // niets gepland
 
-    const medewerkerId = gekozen.name.replace("shift_", "");
+    const medewerkerId = row.dataset.medewerkerId; // 👈 ENIGE waarheid
     const type = gekozen.value; // full / half
 
     await slaPlanningOp(medewerkerId, datum, type);
