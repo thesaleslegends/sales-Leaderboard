@@ -319,11 +319,11 @@ if (data.shiftWeight === 0.5) {
  async function laadDag(datum) {
   regelsContainer.innerHTML = "";
 
-  const { data, error } = await supabase
-    .from("dagen")
-    .select("regels")
-    .eq("datum", datum)
-    .single();
+ const { data, error } = await supabase
+  .from("dagen")
+  .select("regels")
+  .eq("datum", datum)
+  .maybeSingle();
 
   if (error) {
     console.error("Fout bij laden dag:", error);
