@@ -7,14 +7,17 @@ const opslaanBtn = document.getElementById("opslaanPlanning");
 /* =========================
    INIT
 ========================= */
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   datumInput.valueAsDate = new Date();
-  laadMedewerkers();
 
-  datumInput.addEventListener("change", () => {
-  laadPlanningVoorDatum(datumInput.value);
+  await laadMedewerkers(); // wacht tot medewerkers ÉCHT gerenderd zijn
+  await laadPlanningVoorDatum(datumInput.value); // laad planning expliciet
+
+  datumInput.addEventListener("change", async () => {
+    await laadPlanningVoorDatum(datumInput.value);
+  });
 });
-});
+
 
 /* =========================
    MEDEWERKERS LADEN
