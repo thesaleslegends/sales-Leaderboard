@@ -6,19 +6,20 @@ console.log("script gestart");
 import { haalMedewerkersOp } from "./js/medewerkers.js";
 
 
-export const MEDEWERKERS = {
-  emp_001: { naam: "Damian" },
-  emp_002: { naam: "Tim" },
-  emp_003: { naam: "Jade" },
-  emp_004: { naam: "Ricardo" },
-  emp_005: { naam: "San" },
-  emp_006: { naam: "Joya" },
-  emp_007: { naam: "Kees" },
-  emp_008: { naam: "md" },
-  emp_009: { naam: "Md" },
-  emp_010: { naam: "md" },
-  emp_011: { naam: "md" }
-};
+
+
+async function vulMedewerkerSelect(selectElement) {
+  const medewerkers = await haalMedewerkersOp();
+
+  selectElement.innerHTML = `<option value="">Selecteer medewerker</option>`;
+
+  medewerkers.forEach(m => {
+    const option = document.createElement("option");
+    option.value = m.id;
+    option.textContent = m.naam;
+    selectElement.appendChild(option);
+  });
+}
 
 
 // =========================
@@ -259,7 +260,7 @@ async function renderLeaderboard() {
   /* =========================
      REGEL MAKEN
   ========================= */
-  function maakRegel(data = {}) {
+  async function maakRegel(item = {}) {
     const row = document.createElement("div");
     row.className = "row";
 
@@ -290,6 +291,7 @@ async function renderLeaderboard() {
     const medewerkerSelect = row.querySelector(".medewerker");
 if (data.medewerkerId) {
   medewerkerSelect.value = data.medewerkerId;
+
 }
 
 // ✅ STAP 2 — HIER PLAKKEN
@@ -325,16 +327,26 @@ if (data.shiftWeight === 0.5) {
 
   if (error) {
     console.error("Fout bij laden dag:", error);
+    return;
   }
 
   const regels = data?.regels || [];
 
-  if (regels.length === 0) {
+  // 👇 ACTIEVE MEDEWERKERS OPHALEN
+  const actieveMedewerkers = await haalMedewerkersOp();
+  const actieveNamen = actieveMedewerkers.map(m => m.naam);
+
+  // 👇 FILTER: alleen actieve medewerkers tonen
+  const gefilterdeRegels = regels.filter(
+    r => !r.medewerker || actieveNamen.includes(r.medewerker)
+  );
+
+  if (gefilterdeRegels.length === 0) {
     maakRegel();
   } else {
-    regels.forEach(item => maakRegel(item));
+    gefilterdeRegels.forEach(item => maakRegel(item));
   }
-} 
+}
  
 
   /* =========================
