@@ -6,20 +6,14 @@ console.log("script gestart");
 import { haalMedewerkersOp } from "./js/medewerkers.js";
 
 
-
-
-async function vulMedewerkerSelect(selectElement) {
-  const medewerkers = await haalMedewerkersOp();
-
-  selectElement.innerHTML = `<option value="">Selecteer medewerker</option>`;
-
-  medewerkers.forEach(m => {
-    const option = document.createElement("option");
-    option.value = m.id;
-    option.textContent = m.naam;
-    selectElement.appendChild(option);
-  });
-}
+export const MEDEWERKERS = {
+  emp_001: { naam: "Damian" },
+  emp_002: { naam: "Tim" },
+  emp_003: { naam: "Jade" },
+  emp_004: { naam: "Ricardo" },
+  emp_005: { naam: "San" },
+  emp_006: { naam: "Joya" }
+};
 
 
 // =========================
@@ -260,7 +254,7 @@ async function renderLeaderboard() {
   /* =========================
      REGEL MAKEN
   ========================= */
-  async function maakRegel(item = {}) {
+  function maakRegel(data = {}) {
     const row = document.createElement("div");
     row.className = "row";
 
@@ -291,7 +285,6 @@ async function renderLeaderboard() {
     const medewerkerSelect = row.querySelector(".medewerker");
 if (data.medewerkerId) {
   medewerkerSelect.value = data.medewerkerId;
-
 }
 
 // ✅ STAP 2 — HIER PLAKKEN
@@ -319,34 +312,24 @@ if (data.shiftWeight === 0.5) {
  async function laadDag(datum) {
   regelsContainer.innerHTML = "";
 
- const { data, error } = await supabase
-  .from("dagen")
-  .select("regels")
-  .eq("datum", datum)
-  .maybeSingle();
+  const { data, error } = await supabase
+    .from("dagen")
+    .select("regels")
+    .eq("datum", datum)
+    .single();
 
   if (error) {
     console.error("Fout bij laden dag:", error);
-    return;
   }
 
   const regels = data?.regels || [];
 
-  // 👇 ACTIEVE MEDEWERKERS OPHALEN
-  const actieveMedewerkers = await haalMedewerkersOp();
-  const actieveNamen = actieveMedewerkers.map(m => m.naam);
-
-  // 👇 FILTER: alleen actieve medewerkers tonen
-  const gefilterdeRegels = regels.filter(
-    r => !r.medewerker || actieveNamen.includes(r.medewerker)
-  );
-
-  if (gefilterdeRegels.length === 0) {
+  if (regels.length === 0) {
     maakRegel();
   } else {
-    gefilterdeRegels.forEach(item => maakRegel(item));
+    regels.forEach(item => maakRegel(item));
   }
-}
+} 
  
 
   /* =========================
