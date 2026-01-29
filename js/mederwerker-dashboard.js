@@ -1,4 +1,4 @@
-import { supabase } from "../supabase.js";
+import { supabase } from "./supabase.js";
 
 /* =========================
    HELPERS
@@ -68,6 +68,7 @@ async function initDashboard() {
     console.error("❌ Geen ingelogde gebruiker");
     return;
   }
+  
 
   /* 2️⃣ DOM */
   const naamEl = document.getElementById("medewerkerNaam");
