@@ -37,8 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // ✅ Succes → dashboard
-window.location.href = "/sales-Leaderboard/dashboard.html";
+// ✅ Succes → dashboard
+window.location.href = "/sales-leaderboard/dashboard.html";
   });
 
   function showError(message) {
