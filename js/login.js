@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 // ✅ Succes → dashboard
-window.location.href = "dashboard.html";
+window.location.href = "https://thesaleslegends.nl/dashboard.html";
   });
 
   function showError(message) {
