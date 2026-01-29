@@ -1,5 +1,5 @@
 import { supabase } from "./supabase.js";
-
+console.log("AUTH USER:", user);
 /* =========================
    HELPERS
 ========================= */
@@ -84,17 +84,18 @@ async function initDashboard() {
     return;
   }
 
-  /* 3️⃣ Medewerker */
- const { data: medewerker } = await supabase
+const { data: medewerkers, error } = await supabase
   .from("medewerkers")
-  .select("id, naam, basis_dagloon, bonus_per_netto")
-  .eq("auth_user_id", user.id)
-  .single();
+  .select("*")
+  .eq("auth_user_id", user.id);
 
-  if (medewerkerError || !medewerker) {
-    console.error("❌ Geen medewerker gevonden");
-    return;
-  }
+const medewerker = medewerkers?.[0];
+
+if (!medewerker) {
+  console.error("❌ Geen medewerker gevonden voor user:", user.id);
+  naamEl.textContent = "Onbekende medewerker";
+  return;
+}
 
   naamEl.textContent = medewerker.naam;
 
@@ -227,6 +228,7 @@ leaderboardBtn.addEventListener("click", () => {
   window.location.href = "index.html?via=dashboard";
 });
 }
+console.log("MEDEWERKER QUERY RESULT:", medewerkers);
   /* =========================
      DEBUG
   ========================= */
