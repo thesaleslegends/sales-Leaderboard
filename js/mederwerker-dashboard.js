@@ -1,5 +1,6 @@
 import { supabase } from "/supabase.js";
-console.log("AUTH USER:", user);
+
+
 /* =========================
    HELPERS
 ========================= */
@@ -64,6 +65,7 @@ async function initDashboard() {
     error: authError
   } = await supabase.auth.getUser();
 
+console.log("AUTH USER:", user);
   if (authError || !user) {
     // ⛔ Niet ingelogd → terug naar login
     window.location.href = "/login.html";
@@ -84,12 +86,19 @@ async function initDashboard() {
     return;
   }
 
-const { data: medewerkers, error } = await supabase
+const { data: medewerker, error: medewerkerError } = await supabase
   .from("medewerkers")
-  .select("*")
-  .eq("auth_user_id", user.id);
+  .select("id, naam, basis_dagloon, bonus_per_netto")
+  .eq("auth_user_id", user.id)
+  .single();
 
-const medewerker = medewerkers?.[0];
+if (medewerkerError || !medewerker) {
+  console.error("❌ Geen medewerker gevonden voor user:", user.id);
+  naamEl.textContent = "Onbekende medewerker";
+  return;
+}
+
+naamEl.textContent = medewerker.naam;
 
 if (!medewerker) {
   console.error("❌ Geen medewerker gevonden voor user:", user.id);
