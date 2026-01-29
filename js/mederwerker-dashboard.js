@@ -219,9 +219,9 @@ const toekomstigeShifts = shifts.filter(s =>
 const leaderboardBtn = document.getElementById("leaderboardBtn");
 
 if (leaderboardBtn) {
-  leaderboardBtn.addEventListener("click", () => {
- window.location.href = "./index.html";
-  });
+leaderboardBtn.addEventListener("click", () => {
+  window.location.href = "index.html?via=dashboard";
+});
 }
   /* =========================
      DEBUG
