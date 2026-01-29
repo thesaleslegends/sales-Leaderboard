@@ -233,9 +233,9 @@ const toekomstigeShifts = shifts.filter(s =>
 const leaderboardBtn = document.getElementById("leaderboardBtn");
 
 if (leaderboardBtn) {
-leaderboardBtn.addEventListener("click", () => {
-  window.location.href = "index.html?via=dashboard";
-});
+  leaderboardBtn.addEventListener("click", () => {
+    window.location.href = "/index.html";
+  });
 }
 console.log("MEDEWERKER QUERY RESULT:", medewerkers);
   /* =========================
