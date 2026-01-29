@@ -2,14 +2,19 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <title>Sales Legends – Login</title>
+  <title>Sales Legends – Leaderboard</title>
 
-  <!-- Directe redirect -->
-  <meta http-equiv="refresh" content="0; url=login.md.html">
+  <link rel="stylesheet" href="style.css">
 
-  <!-- Fallback voor zekerheid -->
-  <script>
-    window.location.replace("login.md.html");
+  <script type="module">
+    import { supabase } from "./supabase.js";
+
+    const { data: { user } } = await supabase.auth.getUser();
+
+    // Alleen NIET-ingelogde users blokkeren
+    if (!user) {
+      window.location.href = "/login.html";
+    }
   </script>
 </head>
 <body>
