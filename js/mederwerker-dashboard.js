@@ -85,11 +85,11 @@ async function initDashboard() {
   }
 
   /* 3️⃣ Medewerker */
-  const { data: medewerker, error: medewerkerError } = await supabase
-    .from("medewerkers")
-    .select("id, naam, basis_dagloon, bonus_per_netto")
-    .eq("auth_user_id", user.id)
-    .single();
+ const { data: medewerker } = await supabase
+  .from("medewerkers")
+  .select("id, naam, basis_dagloon, bonus_per_netto")
+  .eq("auth_user_id", user.id)
+  .single();
 
   if (medewerkerError || !medewerker) {
     console.error("❌ Geen medewerker gevonden");
