@@ -234,7 +234,7 @@ const leaderboardBtn = document.getElementById("leaderboardBtn");
 
 if (leaderboardBtn) {
   leaderboardBtn.addEventListener("click", () => {
-    window.location.href = "/index.html";
+    window.location.href = "/leaderboard.html";
   });
 }
 console.log("MEDEWERKER QUERY RESULT:", medewerkers);
