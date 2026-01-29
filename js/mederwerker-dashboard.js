@@ -1,4 +1,4 @@
-import { supabase } from "./supabase.js";
+import { supabase } from "/supabase.js";
 console.log("AUTH USER:", user);
 /* =========================
    HELPERS
