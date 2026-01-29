@@ -65,9 +65,12 @@ async function initDashboard() {
   } = await supabase.auth.getUser();
 
   if (authError || !user) {
-    console.error("❌ Geen ingelogde gebruiker");
+    // ⛔ Niet ingelogd → terug naar login
+    window.location.href = "/login.html";
     return;
   }
+
+  // 👇 ALLES hieronder blijft zoals het was
   
 
   /* 2️⃣ DOM */
