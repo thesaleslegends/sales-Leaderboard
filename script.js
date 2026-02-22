@@ -13,7 +13,9 @@ export const MEDEWERKERS = {
   emp_004: { naam: "Ricardo" },
   emp_005: { naam: "San" },
   emp_006: { naam: "Joya" },
-  emp_007: { naam: "Kees" }   // 👈 toegevoegd
+  emp_007: { naam: "Kees" },
+  emp_008: { naam: "Jara" },   // 👈 nieuw
+  emp_009: { naam: "Gyrelsho" }     // 👈 nieuw
 };
 
 // =========================
@@ -268,6 +270,8 @@ async function renderLeaderboard() {
     <option value="emp_005">San</option>
     <option value="emp_006">Joya</option>
     <option value="emp_007">Kees</option>
+    <option value="emp_008">Jara</option>
+    <option value="emp_009">Gyrelsho</option>
   </select>
 
   <label style="font-size:12px; margin: 0 6px;">
